@@ -40,15 +40,161 @@
   <!-- Div Game container -->
 
   <div class="gameContainer">
+
+    <!-- first row inside game container, contains the deck, dealer hand, and the odds -->
     <div class="row">
-      <div class="col-md-4" id="deck"><h1>Hello</h1></div>
 
-      <div class="col-md-4" id="dealerHand"><h1>Hello</h1></div>
+      <!-- The deck -->
+      <div class="col-md-2" id="deckContainer">
+        <div id="deck">
+          <h1>This is the deck</h1>
+        </div>
+      </div>
 
-      <div class="col-md-4" id="odds"><h1>Hello</h1></div>
-    </div>
+      <!-- Dealers hand -->
+      <div class="col-md-6" id="dealerHand">
+        <div id="DealerCardContainer">
+          <h1>Dealer Hand</h1>
+          <div class="row">
+
+            <!-- Each column is a card -->
+            <div class="col-md-2">
+              <h6>img1</h6>
+            </div>
+
+            <div class="col-md-2">
+              <h6>img1</h6>
+            </div>
+
+            <div class="col-md-2">
+              <img src="C:\Users\TECH-W74\Desktop\BJproject\images\QS.png" alt="3 of Hearts">
+            </div> <!-- Cards end -->
+
+            <div class="col-md-2">
+              <img src="C:\Users\TECH-W74\Desktop\BJproject\images\QS.png" alt="3 of Hearts">
+            </div>
+          </div> <!-- Row div ends -->
+        </div>
+      </div> <!-- Dealers hand ends -->
+
+      <!-- Some graph -->
+      <div class="col-md-4" id="odds"><h3>Some graph for odds</h3></div>
+    </div> <!-- First row ends -->
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- Second row begins -->
+    <div>
+      <div class="row"> <!-- big row to have both hands -->
+
+        <!-- splitting the columns in half -->
+        <div class="col-md-6">
+          <h1>Player hand</h1>
+          <div class="row"></div>
+          <!-- Each column is a card -->
+          <div class="col-md-2">
+            <img src="C:\Users\TECH-W74\Desktop\BJproject\images\QS.png" alt="3 of Hearts">
+          </div>
+
+          <div class="col-md-2">
+            <img src="C:\Users\TECH-W74\Desktop\BJproject\images\QS.png" alt="3 of Hearts">
+          </div>
+
+          <div class="col-md-2">
+            <img src="C:\Users\TECH-W74\Desktop\BJproject\images\QS.png" alt="3 of Hearts">
+          </div>
+
+          <div class="col-md-2">
+            <h6>img1</h6>
+          </div> <!-- Cards end -->
+        </div> <!-- half ends -->
+
+        <!-- splitting the columns in half -->
+        <div class="col-md-6">
+          <h1>Player hand</h1>
+          <div class="row"></div>
+          <!-- Each column is a card -->
+          <div class="col-md-3">
+            <h6>img1</h6>
+          </div>
+
+          <div class="col-md-3">
+            <h6>img1</h6>
+          </div>
+
+          <div class="col-md-3">
+            <h6>img1</h6>
+          </div>
+
+          <div class="col-md-3">
+            <h6>img1</h6>
+          </div> <!-- Cards end -->
+        </div> <!-- half ends -->
+
+      </div><!-- big row to have both hands ends -->
+
+    </div> <!-- Second row ends -->
+      <div class="row">
+
+        <!-- two different columns that have buttons. -->
+        <div class="col-md-6">
+          <a id="betButtons" href="#" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Hit</a>
+          <a id="betButtons" href="#" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Pass</a>
+          <div class="form-group">
+
+            <div class="row">
+              <br>
+              <div class="col-md-2">
+                <input id="betLabel" type="text" class="form-control" id="formGroupExampleInput" placeholder="Bet">
+              </div>
+              <div class="col-md-2">
+                <a id="betButtons" href="#" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Bet</a>
+              </div>
+              <div class="col-md-4">
+                <h4>You still have:</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- two different columns that have buttons. -->
+        <div class="col-md-6">
+          <a id="betButtons" href="#" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Hit</a>
+          <a id="betButtons" href="#" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Pass</a>
+
+
+         <div class="row">
+          <br>
+          <div class="col-md-2">
+           <input id="betLabel" type="text" class="form-control" id="formGroupExampleInput" placeholder="Bet">
+          </div>
+          <div class="col-md-2">
+            <a id="betButtons" href="#" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Bet</a>
+          </div>
+          <div class="col-md-4">
+            <h4>You still have:</h4>
+          </div>
+        </div>
+      </div>
+    </div> <!-- buttons end -->
   </div>
+    <!-- Third row to have buttons -->
+    <div>
 
+
+    </div> <!-- Third row ends-->
 
   </div> <!-- Div Game container end -->
 

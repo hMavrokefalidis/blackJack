@@ -2,6 +2,11 @@
   color: red;
 }
 
+body{
+ margin: 0;
+ padding: 0;
+}
+
 .gameContainer{
   background-color: green;
   height: 800px;
@@ -12,4 +17,14 @@
   background-color: blue;
   height: 200px;
   width: 200px;
+}
+
+#betButtons{
+  color: white;
+  background-color: #222222;
+}
+
+#betLabel{
+  width: 100px;
+  height: 44px;
 }
