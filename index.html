@@ -45,9 +45,10 @@
     <div class="row">
 
       <!-- The deck -->
-      <div class="col-md-2" id="deckContainer">
+      <div class="col-md-2 offset-md-1" id="deckContainer">
         <div id="deck">
-          <h1>This is the deck</h1>
+          <h4 id="remainingCards">Remaining cards:</h4><br> <!--Shows remaining cards-->
+          <img src="C:\Users\TECH-W74\Desktop\BJproject\images\gray_back.png"></img>
         </div>
       </div>
 
@@ -78,16 +79,9 @@
       </div> <!-- Dealers hand ends -->
 
       <!-- Some graph -->
-      <div class="col-md-4" id="odds"><h3>Some graph for odds</h3></div>
+      <div class="col-md-3" id="odds"><h3>Some graph for odds</h3></div>
     </div> <!-- First row ends -->
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
     <br>
     <br>
     <br>
@@ -101,45 +95,44 @@
 
         <!-- splitting the columns in half -->
         <div class="col-md-6">
-          <h1>Player hand</h1>
+          <h3 id="p1HandCounter">Place your bets</h3>
           <div class="row"></div>
           <!-- Each column is a card -->
-          <div class="col-md-2">
-            <img src="C:\Users\TECH-W74\Desktop\BJproject\images\AS.png" alt="3 of Hearts">
+          <div id="p1card0" class="col-md-2">
+
           </div>
 
-          <div class="col-md-2">
-            <img src="C:\Users\TECH-W74\Desktop\BJproject\images\QS.png" alt="3 of Hearts">
+          <div id="p1card1" class="col-md-2">
           </div>
 
-          <div class="col-md-2">
-            <img src="C:\Users\TECH-W74\Desktop\BJproject\images\QH.png" alt="3 of Hearts">
+          <div id="p1card2" class="col-md-2">
+
           </div>
 
-          <div class="col-md-2">
-            <h6>img1</h6>
+          <div id="p1card3" class="col-md-2">
+
           </div> <!-- Cards end -->
         </div> <!-- half ends -->
 
         <!-- splitting the columns in half -->
         <div class="col-md-6">
-          <h1>Player hand</h1>
+          <h3 id="p2HandCounter">Place your bets</h3>
           <div class="row"></div>
           <!-- Each column is a card -->
           <div class="col-md-3">
-            <h6>img1</h6>
+        
           </div>
 
           <div class="col-md-3">
-            <h6>img1</h6>
+
           </div>
 
           <div class="col-md-3">
-            <h6>img1</h6>
+
           </div>
 
           <div class="col-md-3">
-            <h6>img1</h6>
+
           </div> <!-- Cards end -->
         </div> <!-- half ends -->
 
@@ -150,20 +143,20 @@
 
         <!-- two different columns that have buttons. -->
         <div class="col-md-6">
-          <a id="betButtons" href="#" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Hit</a>
-          <a id="betButtons" href="#" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Pass</a>
+          <a id="p1Hit" class="btn btn-secondary btn-lg active betButtons" role="button" aria-pressed="true">Hit</a>
+          <a id="p1Pass" class="btn btn-secondary btn-lg active betButtons" role="button" aria-pressed="true">Pass</a>
           <div class="form-group">
 
             <div class="row">
               <br>
               <div class="col-md-2">
-                <input id="betLabel" type="text" class="form-control" id="formGroupExampleInput" placeholder="Bet">
+                <input id="p1BetAmount" type="number" class="form-control" id="formGroupExampleInput" placeholder="Bet">
               </div>
               <div class="col-md-2">
-                <a id="betButtons" href="#" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Bet</a>
+                <a id="p1Bet" class="btn btn-secondary btn-lg active betButtons" role="button" aria-pressed="true">Bet</a>
               </div>
               <div class="col-md-4">
-                <h4>You still have:</h4>
+                <h4 id="player1Bets">You still have:</h4>
               </div>
             </div>
           </div>
@@ -171,8 +164,8 @@
 
         <!-- two different columns that have buttons. -->
         <div class="col-md-6">
-          <a id="betButtons" href="#" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Hit</a>
-          <a id="betButtons" href="#" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Pass</a>
+          <a id="p2Hit" class="btn btn-secondary btn-lg active betButtons" role="button" aria-pressed="true">Hit</a>
+          <a id="p2Pass" class="btn btn-secondary btn-lg active betButtons" role="button" aria-pressed="true">Pass</a>
 
 
          <div class="row">
@@ -181,10 +174,10 @@
            <input id="betLabel" type="text" class="form-control" id="formGroupExampleInput" placeholder="Bet">
           </div>
           <div class="col-md-2">
-            <a id="betButtons" href="#" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Bet</a>
+            <a id="p2Bet" class="btn btn-secondary btn-lg active betButtons" role="button" aria-pressed="true">Bet</a>
           </div>
           <div class="col-md-4">
-            <h4>You still have:</h4>
+            <h4 id="player2Bets">You still have:</h4>
           </div>
         </div>
       </div>

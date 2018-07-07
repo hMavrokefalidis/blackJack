@@ -3,13 +3,50 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     //setting up the deck. Create it, shuffle, hit and pass functionalities
     var name = ["2","3","4","5","6","7","8","9","10","J","Q","K","A"];
-    var suit = ["Spades","Hearts","Diamonds","Clubs"];
+    var suit = ["S","H","D","C"];
     var deck = [];
+    var money = 100;
+    var p2Score = 0;
+    var dealerScore = 0;
 
     setUpDeck();
-    console.log(deck);
+    $("#p1Bet").click(firstBets);
 
+    //After a bet has been placed, 2 cards are dealt to the player and their value should be calculated.
+    //Options for hit and pass should be open
+    function firstBets() {
+      var p1Hand = [];
+      var p1Score = 0;
 
+      for (var cd = 0; cd < 2; cd++) {
+        p1Hand[cd] = deck.shift();
+        $('#p1card'+cd).prepend('<img src= C:/Users/TECH-W74/Desktop/BJproject/images/'+p1Hand[cd].Name+p1Hand[cd].Suit+'.png />');
+      }
+      $( "#p1Bet" ).hide( "slow", function(){});
+      p1score = p1Hand[0].Value + p1Hand[1].Value;
+      $("#p1HandCounter").html("Player 1 score is "+p1score);
+
+      $("#p1Hit").click(hitOnce);
+      $("#p1Pass").click(pass);
+
+    }
+
+    function hitOnce(cd) {
+      var nextCard = deck.shift();
+      console.log(nextCard.Name+nextCard.Suit);
+      p1score = p1score + nextCard.Value;
+      if (p1score > 21) {
+        $("#p1HandCounter").html("Bust! Your score is: "+p1score);
+      }else {
+        $("#p1HandCounter").html("Player 1 score is: "+p1score);
+        $('#p1card2').prepend('<img src= C:/Users/TECH-W74/Desktop/BJproject/images/9D.png />');
+        }
+      }
+
+    function pass() {
+
+    }
+    //gets 1 random integer from a pool of numbers
     function getRandomInteger(min,max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
     }
