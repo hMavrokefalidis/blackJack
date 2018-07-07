@@ -10,38 +10,70 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var dealerScore = 0;
 
     setUpDeck();
-    $("#p1Bet").click(firstBets);
+    $("#p1BetAmount").click(function() {
+      var player1Bet = prompt("Enter the amount you want to bet");
+      if (player1Bet < money) {
+        $("#p1Bet").click(firstBets);
+        $( "#p1BetAmount" ).hide( "slow", function(){});
+      }
+    })
+
+    function reset(){
+
+    }
+
 
     //After a bet has been placed, 2 cards are dealt to the player and their value should be calculated.
     //Options for hit and pass should be open
     function firstBets() {
       var p1Hand = [];
+      var deHand = [];
       var p1Score = 0;
+      var deScore = 0;
 
       for (var cd = 0; cd < 2; cd++) {
         p1Hand[cd] = deck.shift();
         $('#p1card'+cd).prepend('<img src= C:/Users/TECH-W74/Desktop/BJproject/images/'+p1Hand[cd].Name+p1Hand[cd].Suit+'.png />');
       }
+
+      for (var de = 0; de < 2; de++) {
+        deHand[de] = deck.shift();
+      }
+      $('#dealCard1').prepend('<img src= C:/Users/TECH-W74/Desktop/BJproject/images/gray_back.png />');
+      $('#dealCard2').prepend('<img src= C:/Users/TECH-W74/Desktop/BJproject/images/'+ deHand[1].Name + deHand[1].Suit +'.png />');
+      deScore = deHand[0].Value + deHand[1].Value;
+      console.log(deScore);
+
       $( "#p1Bet" ).hide( "slow", function(){});
       p1score = p1Hand[0].Value + p1Hand[1].Value;
       $("#p1HandCounter").html("Player 1 score is "+p1score);
 
-      $("#p1Hit").click(hitOnce);
-      $("#p1Pass").click(pass);
+
+      //Once a player placed a bet, and seen their hand, they should be able to Hit on top of their combo
+      //Here, an event is set that takes the top Card of the deck, matches it with the respective picture
+      //Finally setting it up on it's column on the board
+      $("#p1Hit").click(function() {
+        var nextCard = deck.shift();
+        if (p1score < 21) {
+          p1score = p1score + nextCard.Value;
+          $("#p1HandCounter").html("Player 1 score is: "+p1score);
+          $('#p1card'+cd).prepend('<img src= C:/Users/TECH-W74/Desktop/BJproject/images/'+nextCard.Name+nextCard.Suit+'.png />');
+          if (p1score > 21) {
+            $("#p1HandCounter").html("Bust! Your score is: "+p1score);
+            $( "#p1Hit" ).hide( "slow", function(){});
+            $( "#p1Pass" ).hide( "slow", function(){});
+            
+          }
+          }
+        return cd++;
+      });
+
+
+      $("#p1Pass").click(function() {
+
+      });
 
     }
-
-    function hitOnce(cd) {
-      var nextCard = deck.shift();
-      console.log(nextCard.Name+nextCard.Suit);
-      p1score = p1score + nextCard.Value;
-      if (p1score > 21) {
-        $("#p1HandCounter").html("Bust! Your score is: "+p1score);
-      }else {
-        $("#p1HandCounter").html("Player 1 score is: "+p1score);
-        $('#p1card2').prepend('<img src= C:/Users/TECH-W74/Desktop/BJproject/images/9D.png />');
-        }
-      }
 
     function pass() {
 
@@ -88,6 +120,4 @@ document.addEventListener("DOMContentLoaded", function(event) {
         deck[j] = temp;
         }
       }
-
-
     });
