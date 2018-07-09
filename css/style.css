@@ -12,6 +12,10 @@ body{
   width: 120px !important;
   height: 150px;
 }
+#p1BetAmount{
+  width: 80px;
+  height: 43px;
+}
 
 .gameContainer{
   height: 800px;

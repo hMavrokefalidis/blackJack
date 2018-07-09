@@ -8,15 +8,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var money = 100;
     var player1Bet;
 
-
     setUpDeck();
     $("#player1RemainingMoney").html("You have: £"+money);
     $("#p1BetAmount").click(function() {
       player1Bet = prompt("Enter the amount you want to bet");
-    //  if (player1Bet < money) {
+      if (player1Bet < money) {
         $("#p1Bet").click(firstBets);
         $( "#p1BetAmount" ).hide( "slow", function(){});
-    //  }
+      }
     });
 
 
@@ -58,25 +57,25 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
         setTimeout(function(){
-          if (deScore < p1score && p1score<=21) {
             for (var de = 3; de <= 5; de++) {
+              if (deScore < p1score && p1score<=21) {
               var dealerCard = deck.shift();
               deScore = deScore + dealerCard.Value;
               $('#dealCard'+de).prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+dealerCard.Name+dealerCard.Suit+'.png />');
               $('#dealerScoreLabel').html('<h4>Dealer score: '+deScore+'</h4>');
             };
-            if (deScore > 21) {
-             money = money + player1Bet;
-             $("#player1RemainingMoney").html("You have: £"+money);//AI LOSES
-           }
-           else if (deScore >= p1score && deScore <= 21 || p1score>21) {
-             money = money - player1Bet;
-             $("#player1RemainingMoney").html("You have: £"+money);//AI wins
-           }
-           else if (deScore == p1Score) {
-             $("#player1RemainingMoney").html("You have: £"+money);//draw
-           }
           };
+          if (deScore > 21) {
+           money = money + player1Bet;
+           $("#player1RemainingMoney").html("You have: £"+money);//AI LOSES
+          }
+         else if (deScore >= p1score && deScore <= 21 || p1score>21) {
+           money = money - player1Bet;
+           $("#player1RemainingMoney").html("You have: £"+money);//AI wins
+         }
+         else if (deScore == p1Score) {
+           $("#player1RemainingMoney").html("You have: £"+money);//draw
+         }
         }, 3000);
       });
 
@@ -94,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
           cd++;
           if(p1score > 21){
             $("#p1HandCounter").html("Bust! Your score is: "+p1score);
-            money = money - player1Bet
+            money = money - player1Bet;
             $( "#p1Hit" ).hide( "slow", function(){});
             $( "#p1Pass" ).hide( "slow", function(){});
           }
@@ -103,8 +102,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
           $( "#p1Pass" ).click( "click", function(){
             $("dealCard1").replaceWith('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+deHand[0].Name+ deHand[0].Suit +'.png />')
             setTimeout(function(){
-              for (var de = 3 ; de <= 5; de++) {
-                if (deScore < p1score && p1score<=21) {
+              if (deScore < p1score && p1score<=21) {
+                for (var de = 3 ; de <= 5; de++) {
                   var dealerCard = deck.shift();
                   deScore = deScore + dealerCard.Value;
                   $('#dealCard'+de).prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+dealerCard.Name+dealerCard.Suit+'.png />');
@@ -112,38 +111,27 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 }
               }
             }, 3000);
-            return cd++;
-               if (deScore > 21) {
-                money = money + player1Bet;
-                $("#player1RemainingMoney").html("You have: £"+money);//AI LOSES
-              }
-              else if (deScore >= p1score && deScore <= 21 || p1score>21) {
-                money = money - player1Bet;
-                $("#player1RemainingMoney").html("You have: £"+money);//AI wins
-              }
-              else if (deScore == p1Score) {
-                $("#player1RemainingMoney").html("You have: £"+money);//draw
-              }
-            });
-          }
-        });
-      };
+            if (deScore > 21) {
+              money = money + player1Bet;
+              $("#player1RemainingMoney").html("You have: £"+money);//AI LOSES
+            }
+            else if (deScore >= p1score && deScore <= 21 || p1score>21) {
+              money = money - player1Bet;
+              $("#player1RemainingMoney").html("You have: £"+money);//AI wins
+            }
+            else if (deScore == p1Score) {
+              $("#player1RemainingMoney").html("You have: £"+money);//draw
+            }
+          });
+        }
+      });
+    };
 
 
     //function that checks for the winner comparing the 2 values
 
 
-    //reset the board function, remove all addons so far
-    function reset(){
-      setUpDeck();
-      $( "#p1Hit" ).show( "slow", function(){});
-      $( "#p1Pass" ).show( "slow", function(){});
-      $("#p1BetAmount").show("slow", function(){});
-      $("#p1Bet").show("slow", function(){});
-      $('.card').remove();
-      cd = 0;
-      de = 0;
-    }
+
     //gets 1 random integer from a pool of numbers
     function getRandomInteger(min,max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
