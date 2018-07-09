@@ -5,6 +5,14 @@ body{
   color: white !important;
 }
 
+.cardContainer{
+  border-style: groove;
+  border-color: white;
+  border-radius: 10%;
+  width: 120px !important;
+  height: 150px;
+}
+
 .gameContainer{
   height: 800px;
   width: 1200px;
