@@ -14,8 +14,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
       var betAmountInString = prompt("Enter the amount you want to bet");
       player1Bet = (parseInt(betAmountInString));
 
-      if (player1Bet < money) {
-        $("#p1Bet").click(firstBets);
+      if (player1Bet <= money) {
+        $("#p1Bet").one("click",firstBets);
         $( "#p1BetAmount" ).hide( "slow", function(){});
       }
     });
@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     //After a bet has been placed, 2 cards are dealt to the player and their value should be calculated.
     //Options for hit and pass should be open
     function firstBets() {
+      $( "#p1Reset" ).hide( "slow", function(){});
       $("#player1RemainingMoney").html("You have: £"+(money-player1Bet));
       var p1Hand = [];
       var deHand = [];
@@ -49,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       $("#p1HandCounter").html("Player 1 score is "+p1score);
 
       //Pass anonymous function is created. 1st SPRINT: here the dealers turn should be coded.
-      $( "#p1Pass" ).click( "click", function() {
+      $( "#p1Pass" ).one( "click", function(){
         $( "#p1Hit" ).hide( "slow", function(){});
         $( "#p1Pass" ).hide( "slow", function(){});
         //replacing the face down card with the face up card. Because replaceWith() is used, we must re-add the col-md-2 class
@@ -79,20 +80,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
            $("#player1RemainingMoney").html("You have: £"+money);//draw
          }
         }, 3000);
-        setTimeout(function() {
-          setUpDeck();
-          $(".cardContainer").empty();
-          p1Hand = [];
-          deHand = [];
-          p1score = 0;
-          deScore = 0;
-          $('#dealerScoreLabel').html('<h4>Dealer hand</h4>');
-          $('#p1HandCounter').html('<h4>Player hand</h4>');
-          $( "#p1Hit" ).show( "slow", function(){});
-          $( "#p1Pass" ).show( "slow", function(){});
-          $( "#p1BetAmount" ).show( "slow", function(){});
-          $( "#p1Bet" ).show( "slow", function(){});
-        }, 6000);
+        $( "#p1Reset" ).show( "slow", function(){});
+
       });
 
         //after 3 seconds, the the AI logic will be coded
@@ -100,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       //Once a player placed a bet, and seen their hand, they should be able to Hit on top of their combo
       //Here, an event is set that takes the top Card of the deck, matches it with the respective picture
       //Finally setting it up on it's column on the board
-      $("#p1Hit").click(function() {
+      $("#p1Hit").one("click",function() {
         var nextCard = deck.shift();
         if (p1score < 21) {
           p1score = p1score + nextCard.Value;
@@ -114,24 +103,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
             $( "#p1Hit" ).hide( "slow", function(){});
             $( "#p1Pass" ).hide( "slow", function(){});
             //reset everything
-            setTimeout(function() {
-              setUpDeck();
-              $(".cardContainer").empty();
-              p1Hand = [];
-              deHand = [];
-              p1score = 0;
-              deScore = 0;
-              $('#dealerScoreLabel').html('<h4>Dealer hand</h4>');
-              $('#p1HandCounter').html('<h4>Player hand</h4>');
-              $( "#p1Hit" ).show( "slow", function(){});
-              $( "#p1Pass" ).show( "slow", function(){});
-              $( "#p1BetAmount" ).show( "slow", function(){});
-              $( "#p1Bet" ).show( "slow", function(){});
-            }, 6000);
-          }
+            $( "#p1Reset" ).show( "slow", function(){});
+          };
 
           //if the player passes after a hit
-          $( "#p1Pass" ).click( "click", function(){
+          $( "#p1Pass" ).one( "click", function(){
             $("dealCard1").replaceWith('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+deHand[0].Name+ deHand[0].Suit +'.png />')
             setTimeout(function(){
               if (deScore < p1score && p1score<=21) {
@@ -156,20 +132,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             }
 
             //reset everything
-            setTimeout(function() {
-              setUpDeck();
-              $(".cardContainer").empty();
-              p1Hand = [];
-              deHand = [];
-              p1score = 0;
-              deScore = 0;
-              $('#dealerScoreLabel').html('<h4>Dealer hand</h4>');
-              $('#p1HandCounter').html('<h4>Player hand</h4>');
-              $( "#p1Hit" ).show( "slow", function(){});
-              $( "#p1Pass" ).show( "slow", function(){});
-              $( "#p1BetAmount" ).show( "slow", function(){});
-              $( "#p1Bet" ).show( "slow", function(){});
-            }, 6000);
+            $( "#p1Reset" ).show( "slow", function(){});
           });
         }
       });
@@ -204,6 +167,21 @@ document.addEventListener("DOMContentLoaded", function(event) {
       return deck;
     };
 
+    //Board reset function
+    $("#p1Reset").click("click", function() {
+      setUpDeck();
+      $(".cardContainer").empty();
+      p1Hand = [];
+      deHand = [];
+      p1score = 0;
+      deScore = 0;
+      $('#dealerScoreLabel').html('<h4>Dealer hand</h4>');
+      $('#p1HandCounter').html('<h4>Player hand</h4>');
+      $( "#p1Hit" ).show( "slow", function(){});
+      $( "#p1Pass" ).show( "slow", function(){});
+      $( "#p1BetAmount" ).show( "slow", function(){});
+      $( "#p1Bet" ).show( "slow", function(){});
+    });
 
     //shuffle the deck, get 2 counters in, set them to 0, count backwards the deck length, get random value for the next element,
     //replace the current element with another randomly chosen element in the deck
