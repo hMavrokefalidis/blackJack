@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var player1Bet;
 
     setUpDeck();
+    $("#remainingCards").html("<h4>Remaining cards: "+deck.length+"</h4>");
     $("#player1RemainingMoney").html("You have: £"+money);
     $("#p1BetAmount").click(function() {
       var betAmountInString = prompt("Enter the amount you want to bet");
@@ -40,6 +41,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         deHand[de] = deck.shift();
       }
 
+      $("#remainingCards").html("<h4>Remaining cards: "+deck.length+"</h4>");
+
       $('#dealCard1').prepend('<img class = card src= C:/Users/TECH-W74/Desktop/BJproject/images/gray_back.png />');
       $('#dealCard2').prepend('<img class = card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+ deHand[1].Name + deHand[1].Suit +'.png />');
       deScore = deHand[0].Value + deHand[1].Value;
@@ -68,6 +71,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
               $('#dealerScoreLabel').html('<h4>Dealer score: '+deScore+'</h4>');
             };
           };
+          $("#remainingCards").html("<h4>Remaining cards: "+deck.length+"</h4>");
           if (deScore > 21) {
            money = money + player1Bet;
            $("#player1RemainingMoney").html("You have: £"+money);//AI LOSES
@@ -79,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
          else if (deScore == p1Score) {
            $("#player1RemainingMoney").html("You have: £"+money);//draw
          }
-        }, 3000);
+       }, 1500);
         $( "#p1Reset" ).show( "slow", function(){});
 
       });
@@ -91,13 +95,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
       //Finally setting it up on it's column on the board
       $("#p1Hit").one("click",function() {
         var nextCard = deck.shift();
+        $("#remainingCards").html("<h4>Remaining cards: "+deck.length+"</h4>");
         if (p1score < 21) {
           p1score = p1score + nextCard.Value;
           $("#p1HandCounter").html("Player 1 score is: "+p1score);
           $('#p1card'+cd).prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+nextCard.Name+nextCard.Suit+'.png />');
           cd++;
 
-          if(p1score > 21){
+          if(p1score > 21 ){
             $("#p1HandCounter").html("Bust! Your score is: "+p1score);
             money = money - player1Bet;
             $( "#p1Hit" ).hide( "slow", function(){});
@@ -118,7 +123,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
                   $('#dealerScoreLabel').html('<h4>Dealer score: '+deScore+'</h4>');
                 }
               }
-            }, 3000);
+            }, 2000);
+            $("#remainingCards").html("<h4>Remaining cards: "+deck.length+"</h4>");
             if (deScore > 21) {
               money = money + player1Bet;
               $("#player1RemainingMoney").html("You have: £"+money);//AI LOSES

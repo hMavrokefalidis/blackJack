@@ -10,7 +10,7 @@
     integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
     crossorigin="anonymous"></script>
 
-    <title>BlackJack</title>
+    <title>BlackJack ♠</title>
   </head>
   <body>
 
@@ -28,8 +28,8 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">Rules</a></li>
+          <li class="active"><a href="C:\Users\TECH-W74\Desktop\BJproject\index.html">Home</a></li>
+          <li><a href="C:\Users\TECH-W74\Desktop\BJproject\pages\rules.html">Rules</a></li>
         </ul>
       </div>
     </div>
@@ -45,11 +45,8 @@
     <div class="row">
 
       <!-- The deck -->
-      <div class="col-md-2 offset-md-1" id="deckContainer">
-        <div id="deck">
-          <h4 id="remainingCards">Remaining cards:</h4><br> <!--Shows remaining cards-->
-          <img src="C:\Users\TECH-W74\Desktop\BJproject\images\gray_back.png"></img>
-        </div>
+      <div class="col-md-1 " >
+
       </div>
 
       <!-- Dealers hand -->
@@ -78,8 +75,12 @@
         </div>
       </div> <!-- Dealers hand ends -->
 
-      <!-- Some graph -->
-      <div class="col-md-3" id="odds"><h3>Some graph for odds</h3></div>
+      <div id="deckContainer" class="col-md-3">
+        <div id="deck">
+          <h4 id="remainingCards">Remaining cards:</h4><br> <!--Shows remaining cards-->
+          <img src="C:\Users\TECH-W74\Desktop\BJproject\images\gray_back.png"></img>
+        </div>
+      </div>
     </div> <!-- First row ends -->
 
     <br>
@@ -92,7 +93,9 @@
     <!-- Second row begins -->
     <div>
       <div class="row"> <!-- big row to have both hands -->
+        <div class="col-md-1">
 
+        </div>
         <!-- splitting the columns in half -->
         <div class="col-md-6">
           <h4 id="p1HandCounter">Place your bets</h4>
@@ -114,39 +117,20 @@
 
           </div> <!-- Cards end -->
         </div> <!-- half ends -->
-
-        <!-- splitting the columns in half -->
-        <div class="col-md-6">
-          <h3 id="p2HandCounter">Place your bets</h3>
-          <div class="row"></div>
-          <!-- Each column is a card -->
-          <div class="col-md-3">
-
-          </div>
-
-          <div class="col-md-3">
-
-          </div>
-
-          <div class="col-md-3">
-
-          </div>
-
-          <div class="col-md-3">
-
-          </div> <!-- Cards end -->
-        </div> <!-- half ends -->
-
       </div><!-- big row to have both hands ends -->
 
     </div> <!-- Second row ends -->
+<br>
       <div class="row">
+        <div class="col-md-1">
 
+        </div>
         <!-- two different columns that have buttons. -->
         <div id="player1ButtonBar" class="col-md-6">
           <a id="p1Hit" class="btn btn-secondary btn-lg active betButtons" role="button" aria-pressed="true">Hit</a>
-          <a id="p1Pass" class="btn btn-secondary btn-lg active betButtons" role="button" aria-pressed="true">Pass</a>
-          <a id="p1Reset" class="btn btn-secondary btn-lg active betButtons" role="button" aria-pressed="true">Reset</a>
+          <a id="p1Pass" class="btn btn-secondary btn-lg active betButtons" role="button" aria-pressed="true">Hold</a>
+          <a id="p1Re
+          " class="btn btn-secondary btn-lg active betButtons" role="button" aria-pressed="true">Next round</a>
           <div class="form-group">
 
             <div class="row">
@@ -164,26 +148,6 @@
             </div>
           </div>
         </div>
-
-        <!-- two different columns that have buttons. -->
-        <div class="col-md-6">
-          <a id="p2Hit" class="btn btn-secondary btn-lg active betButtons" role="button" aria-pressed="true">Hit</a>
-          <a id="p2Pass" class="btn btn-secondary btn-lg active betButtons" role="button" aria-pressed="true">Pass</a>
-
-
-         <div class="row">
-          <br>
-          <div class="col-md-2">
-           <input id="betLabel" type="text" class="form-control" id="formGroupExampleInput" placeholder="Bet">
-          </div>
-          <div class="col-md-2">
-            <a id="p2Bet" class="btn btn-secondary btn-lg active betButtons" role="button" aria-pressed="true">Bet</a>
-          </div>
-          <div class="col-md-4">
-            <h4 id="player2Bets">You still have:</h4>
-          </div>
-        </div>
-      </div>
     </div> <!-- buttons end -->
   </div>
     <!-- Third row to have buttons -->

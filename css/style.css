@@ -5,6 +5,16 @@ body{
   color: white !important;
 }
 
+.text{
+  background-color: #333;
+  font-size: 18px;
+}
+
+#valuesPicture{
+  width: 450px;
+  height: 450px;
+}
+
 .cardContainer{
   border-style: groove;
   border-color: white;
