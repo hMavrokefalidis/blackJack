@@ -7,9 +7,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var deck = [];
     var money = 100;
     var player1Bet;
+    var count = 1;
 
     setUpDeck();
-    $("#remainingCards").html("<h4>Remaining cards: "+deck.length+"</h4>");
+    $("#remainingCardsf").html("<h4>Remaining cards: "+deck.length+"</h4>");
     $("#player1RemainingMoney").html("You have: £"+money);
     $("#p1BetAmount").click(function() {
       var betAmountInString = prompt("Enter the amount you want to bet");
@@ -37,19 +38,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
         $('#p1card'+cd).prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+p1Hand[cd].Name+p1Hand[cd].Suit+'.png />');
       }
 
+      p1score = p1Hand[0].Value + p1Hand[1].Value;
+
       for (var de = 0; de < 2; de++) {
         deHand[de] = deck.shift();
       }
 
-      $("#remainingCards").html("<h4>Remaining cards: "+deck.length+"</h4>");
-
       $('#dealCard1').prepend('<img class = card src= C:/Users/TECH-W74/Desktop/BJproject/images/gray_back.png />');
       $('#dealCard2').prepend('<img class = card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+ deHand[1].Name + deHand[1].Suit +'.png />');
+
       deScore = deHand[0].Value + deHand[1].Value;
+
+      $("#remainingCards").html("<h4>Remaining cards: "+deck.length+"</h4>");
 
       //Hide button bet as it shouldn't be used again
       $( "#p1Bet" ).hide( "slow", function(){});
-      p1score = p1Hand[0].Value + p1Hand[1].Value;
+
       $("#p1HandCounter").html("Player 1 score is "+p1score);
 
       //Pass anonymous function is created. 1st SPRINT: here the dealers turn should be coded.
@@ -63,11 +67,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
         setTimeout(function(){
-            for (var de = 3; de <= 5; de++) {
-              if (deScore < p1score && p1score <= 21) {
-              var dealerCard = deck.shift();
-              deScore = deScore + dealerCard.Value;
-              $('#dealCard'+de).prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+dealerCard.Name+dealerCard.Suit+'.png />');
+          for (var de = 3; de <= 5; de++) {
+            if (deScore < p1score && p1score <= 21) {
+            var dealerCard = deck.shift();
+            deScore = deScore + dealerCard.Value;
+            switch (de) {
+              case 3:
+                  $('#dealCard3').prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+dealerCard.Name+dealerCard.Suit+'.png />');
+                break;
+              case 4:
+                  $('#dealCard4').prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+dealerCard.Name+dealerCard.Suit+'.png />');
+                break;
+                $('#dealCard5').prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+dealerCard.Name+dealerCard.Suit+'.png />');
+              default:
+            }
               $('#dealerScoreLabel').html('<h4>Dealer score: '+deScore+'</h4>');
             };
           };
@@ -93,32 +106,44 @@ document.addEventListener("DOMContentLoaded", function(event) {
       //Once a player placed a bet, and seen their hand, they should be able to Hit on top of their combo
       //Here, an event is set that takes the top Card of the deck, matches it with the respective picture
       //Finally setting it up on it's column on the board
-      $("#p1Hit").one("click",function() {
-        var nextCard = deck.shift();
+      $("#p1Hit").unbind().click(function() {
         $("#remainingCards").html("<h4>Remaining cards: "+deck.length+"</h4>");
         if (p1score < 21) {
+          count++;
+          var nextCard = deck.shift();
           p1score = p1score + nextCard.Value;
           $("#p1HandCounter").html("Player 1 score is: "+p1score);
-          $('#p1card'+cd).prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+nextCard.Name+nextCard.Suit+'.png />');
-          cd++;
+          switch (count) {
+            case 2:
+              $('#p1card2').prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+nextCard.Name+nextCard.Suit+'.png />');
+              break;
+            case 3:
+              $('#p1card3').prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+nextCard.Name+nextCard.Suit+'.png />');
+              break;
+            case 4:
+              $('#p1card4').prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+nextCard.Name+nextCard.Suit+'.png />');
+              break;
+            default:
+          }
 
-          if(p1score > 21 ){
-            $("#p1HandCounter").html("Bust! Your score is: "+p1score);
-            money = money - player1Bet;
-            $( "#p1Hit" ).hide( "slow", function(){});
-            $( "#p1Pass" ).hide( "slow", function(){});
-            //reset everything
-            $( "#p1Reset" ).show( "slow", function(){});
-          };
 
           //if the player passes after a hit
-          $( "#p1Pass" ).one( "click", function(){
+          $( "#p1Pass" ).click( function(){
             $("dealCard1").replaceWith('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+deHand[0].Name+ deHand[0].Suit +'.png />')
             setTimeout(function(){
-              if (deScore < p1score && p1score<=21) {
                 for (var de = 3 ; de <= 5; de++) {
+                  if (deScore < p1score && p1score<=21) {
                   var dealerCard = deck.shift();
-                  deScore = deScore + dealerCard.Value;
+                  switch (de) {
+                    case 3:
+                      $('#dealCard3').prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+dealerCard.Name+dealerCard.Suit+'.png />');
+                      break;
+                    case 4:
+                      $('#dealCard4').prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+dealerCard.Name+dealerCard.Suit+'.png />');
+                      break;
+                      $('#dealCard5').prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+dealerCard.Name+dealerCard.Suit+'.png />');
+                    default:
+                  }
                   $('#dealCard'+de).prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+dealerCard.Name+dealerCard.Suit+'.png />');
                   $('#dealerScoreLabel').html('<h4>Dealer score: '+deScore+'</h4>');
                 }
@@ -141,9 +166,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
             $( "#p1Reset" ).show( "slow", function(){});
           });
         }
+        else if (p1score > 21 ){
+          $("#p1HandCounter").html("Bust! Your score is: "+p1score);
+          money = money - player1Bet;
+          $( "#p1Hit" ).hide( "slow", function(){});
+          $( "#p1Pass" ).hide( "slow", function(){});
+          //reset everything
+          $( "#p1Reset" ).show( "slow", function(){});
+        };
       });
     };
-
+    
     //function that checks for the winner comparing the 2 values
     //gets 1 random integer from a pool of numbers
     function getRandomInteger(min,max) {
@@ -179,6 +212,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       $(".cardContainer").empty();
       p1Hand = [];
       deHand = [];
+      count = 1;
       p1score = 0;
       deScore = 0;
       $('#dealerScoreLabel').html('<h4>Dealer hand</h4>');
