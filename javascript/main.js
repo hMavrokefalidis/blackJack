@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
       for (var cd = 0; cd < 2; cd++) {
         p1Hand[cd] = deck.shift();
-        $('#p1card'+cd).prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+p1Hand[cd].Name+p1Hand[cd].Suit+'.png />');
+        $('#p1card'+cd).prepend('<img class=card src= images/'+p1Hand[cd].Name+p1Hand[cd].Suit+'.png />');
       }
 
       p1score = p1Hand[0].Value + p1Hand[1].Value;
@@ -43,8 +43,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         deHand[de] = deck.shift();
       }
 
-      $('#dealCard1').prepend('<img class = card src= C:/Users/TECH-W74/Desktop/BJproject/images/gray_back.png />');
-      $('#dealCard2').prepend('<img class = card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+ deHand[1].Name + deHand[1].Suit +'.png />');
+      $('#dealCard1').prepend('<img class = card src= images/gray_back.png />');
+      $('#dealCard2').prepend('<img class = card src= images/'+ deHand[1].Name + deHand[1].Suit +'.png />');
 
       deScore = deHand[0].Value + deHand[1].Value;
 
@@ -72,13 +72,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
             deScore = deScore + dealerCard.Value;
             switch (de) {
               case 3:
-                  $('#dealCard3').prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+dealerCard.Name+dealerCard.Suit+'.png />');
+                  $('#dealCard3').prepend('<img class=card src= images/'+dealerCard.Name+dealerCard.Suit+'.png />');
                 break;
               case 4:
-                  $('#dealCard4').prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+dealerCard.Name+dealerCard.Suit+'.png />');
+                  $('#dealCard4').prepend('<img class=card src= images/'+dealerCard.Name+dealerCard.Suit+'.png />');
                 break;
               case 5:
-                  $('#dealCard5').prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+dealerCard.Name+dealerCard.Suit+'.png />');
+                  $('#dealCard5').prepend('<img class=card src= images/'+dealerCard.Name+dealerCard.Suit+'.png />');
                 break;
               default:
             }
@@ -90,13 +90,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
            money = money + player1Bet;
            $("#player1RemainingMoney").html("You have: £"+money);//AI LOSES
           }
-         else if (deScore >= p1score && deScore <= 21 || p1score>21) {
+          else if (deScore >= p1score && deScore <= 21 || p1score>21) {
            money = money - player1Bet;
            $("#player1RemainingMoney").html("You have: £"+money);//AI wins
-         }
-         else if (deScore == p1Score) {
-           $("#player1RemainingMoney").html("You have: £"+money);//draw
-         }
+          }
+          else if (deScore == p1Score) {
+            $("#player1RemainingMoney").html("You have: £"+money);//draw
+          }
        }, 1500);
         $( "#p1Reset" ).show( "slow", function(){});
 
@@ -116,13 +116,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
           $("#p1HandCounter").html("Player 1 score is: "+p1score);
           switch (count) {
             case 2:
-              $('#p1card2').prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+nextCard.Name+nextCard.Suit+'.png />');
+              $('#p1card2').prepend('<img class=card src= images/'+nextCard.Name+nextCard.Suit+'.png />');
               break;
             case 3:
-              $('#p1card3').prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+nextCard.Name+nextCard.Suit+'.png />');
+              $('#p1card3').prepend('<img class=card src= images/'+nextCard.Name+nextCard.Suit+'.png />');
               break;
             case 4:
-              $('#p1card4').prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+nextCard.Name+nextCard.Suit+'.png />');
+              $('#p1card4').prepend('<img class=card src= images/'+nextCard.Name+nextCard.Suit+'.png />');
               break;
             default:
           }
@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
           //if the player passes after a hit
           $( "#p1Pass" ).click( function(){
-            $("dealCard1").replaceWith('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+deHand[0].Name+ deHand[0].Suit +'.png />')
+            $("dealCard1").replaceWith('<img class=card src= images/'+deHand[0].Name+ deHand[0].Suit +'.png />')
             setTimeout(function(){
                 for (var de = 3 ; de <= 5; de++) {
                   if (deScore < p1score && p1score<=21) {
@@ -138,13 +138,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
                   descore = descore + dealerCard.Value;
                   switch (de) {
                     case 3:
-                      $('#dealCard3').prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+dealerCard.Name+dealerCard.Suit+'.png />');
+                      $('#dealCard3').prepend('<img class=card src= images/'+dealerCard.Name+dealerCard.Suit+'.png />');
                       break;
                     case 4:
-                      $('#dealCard4').prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+dealerCard.Name+dealerCard.Suit+'.png />');
+                      $('#dealCard4').prepend('<img class=card src= images/'+dealerCard.Name+dealerCard.Suit+'.png />');
                       break;
                     case 5:
-                      $('#dealCard5').prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+dealerCard.Name+dealerCard.Suit+'.png />');
+                      $('#dealCard5').prepend('<img class=card src= images/'+dealerCard.Name+dealerCard.Suit+'.png />');
                       break;
                     default:
                   }
