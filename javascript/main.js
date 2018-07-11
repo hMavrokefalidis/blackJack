@@ -85,19 +85,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
               $('#dealerScoreLabel').html('<h4>Dealer score: '+deScore+'</h4>');
             };
           };
-          $("#remainingCards").html("<h4>Remaining cards: "+deck.length+"</h4>");
-          if (deScore > 21) {
-           money = money + player1Bet;
-           $("#player1RemainingMoney").html("You have: £"+money);//AI LOSES
-          }
-          else if (deScore >= p1score && deScore <= 21 || p1score>21) {
-           money = money - player1Bet;
-           $("#player1RemainingMoney").html("You have: £"+money);//AI wins
-          }
-          else if (deScore == p1Score) {
-            $("#player1RemainingMoney").html("You have: £"+money);//draw
-          }
        }, 1500);
+       $("#remainingCards").html("<h4>Remaining cards: "+deck.length+"</h4>");
+       if (deScore > 21) {
+         money = money + player1Bet;
+         $("#player1RemainingMoney").html("You have: £"+money);//AI LOSES
+       }
+       else if (deScore >= p1score && deScore <= 21 || p1score>21) {
+         money = money - player1Bet;
+         $("#player1RemainingMoney").html("You have: £"+money);//AI wins
+       }
+       else if (deScore == p1Score) {
+         $("#player1RemainingMoney").html("You have: £"+money);//draw
+       }
         $( "#p1Reset" ).show( "slow", function(){});
 
       });
@@ -164,7 +164,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
             else if (deScore == p1Score) {
               $("#player1RemainingMoney").html("You have: £"+money);//draw
             }
-
             //reset everything
             $( "#p1Reset" ).show( "slow", function(){});
           });
