@@ -1,15 +1,58 @@
-#hi{
-  color: red;
+body{
+  background-image: url("../images/casinoTable.jpg");
+  background-repeat: no-repeat center center fixed;
+  background-image: cover;
+  color: white !important;
+}
+
+#homeLink{
+  text-decoration: none;
+  color: white;
+}
+
+#lost{
+  width: 1200px;
+  height: 800px;
+}
+
+.foter{
+  background-color: #222222 !important;
+  height: 50px;
+}
+
+.text{
+  background-color: #333;
+  font-size: 18px;
+}
+
+#valuesPicture{
+  width: 450px;
+  height: 450px;
+}
+
+.cardContainer{
+  border-style: groove;
+  border-color: white;
+  border-radius: 10%;
+  width: 120px !important;
+  height: 150px;
+}
+#p1BetAmount{
+  width: 80px;
+  height: 43px;
 }
 
 .gameContainer{
-  background-color: green;
   height: 800px;
   width: 1200px;
 }
 
-#id{
-  background-color: blue;
-  height: 200px;
-  width: 200px;
+.betButtons{
+  color: white;
+  background-color: #222222;
+}
+
+#betLabel{
+  width: 100px;
+  height: 44px;
 }

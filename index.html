@@ -2,15 +2,15 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="C:\Users\TECH-W74\Desktop\BJproject\css\style.css">
+    <link rel="stylesheet" type="text/css" href="css\style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script type="text/javascript" src="C:\Users\TECH-W74\Desktop\BJproject\javascript\main.js"></script>
+    <script type="text/javascript" src=" javascript\main.js"></script>
     <script
     src="https://code.jquery.com/jquery-3.3.1.js"
     integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
     crossorigin="anonymous"></script>
 
-    <title>BlackJack</title>
+    <title>BlackJack ♠</title>
   </head>
   <body>
 
@@ -28,8 +28,8 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">Rules</a></li>
+          <li class="active"><a href="index.html">Home</a></li>
+          <li><a href="pages\rules.html">Rules</a></li>
         </ul>
       </div>
     </div>
@@ -40,17 +40,124 @@
   <!-- Div Game container -->
 
   <div class="gameContainer">
+
+    <!-- first row inside game container, contains the deck, dealer hand, and the odds -->
     <div class="row">
-      <div class="col-md-4" id="deck"><h1>Hello</h1></div>
 
-      <div class="col-md-4" id="dealerHand"><h1>Hello</h1></div>
+      <!-- The deck -->
+      <div class="col-md-1 " >
 
-      <div class="col-md-4" id="odds"><h1>Hello</h1></div>
-    </div>
+      </div>
+
+      <!-- Dealers hand -->
+      <div class="col-md-6" id="dealerHand">
+        <div id="DealerCardContainer">
+          <h4 id="dealerScoreLabel">Dealer Hand</h4>
+          <div class="row">
+
+            <!-- Each column is a card -->
+            <div id="dealCard1" class="col-md-3 cardContainer">
+
+            </div>
+
+            <div id="dealCard2" class="col-md-3 cardContainer">
+
+            </div>
+
+            <div id="dealCard3" class="col-md-3 cardContainer">
+
+            </div> <!-- Cards end -->
+
+            <div id= "dealCard4" class="col-md-3 cardContainer">
+
+            </div>
+            <div id= "dealCard5" class="col-md-3 cardContainer">
+
+            </div>
+          </div> <!-- Row div ends -->
+        </div>
+      </div> <!-- Dealers hand ends -->
+
+      <div id="deckContainer" class="col-md-3">
+        <div id="deck">
+          <h4 id="remainingCards">Remaining cards:</h4><br> <!--Shows remaining cards-->
+          <img src="images\gray_back.png"></img>
+        </div>
+      </div>
+    </div> <!-- First row ends -->
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- Second row begins -->
+    <div>
+      <div class="row"> <!-- big row to have both hands -->
+        <div class="col-md-1">
+
+        </div>
+        <!-- splitting the columns in half -->
+        <div class="col-md-7">
+          <h4 id="p1HandCounter">Place your bets</h4>
+          <div class="row"></div>
+          <!-- Each column is a card -->
+
+          <div id="p1card0" class="col-md-3 cardContainer">
+
+          </div>
+
+          <div id="p1card1" class="col-md-3 cardContainer">
+          </div>
+
+          <div id="p1card2" class="col-md-3 cardContainer">
+
+          </div>
+
+          <div id="p1card3" class="col-md-3 cardContainer">
+
+          </div>
+          <div id="p1card4" class="col-md-3 cardContainer">
+
+          </div> <!-- Cards end -->
+        </div> <!-- half ends -->
+      </div><!-- big row to have both hands ends -->
+
+    </div> <!-- Second row ends -->
+<br>
+      <div class="row">
+        <div class="col-md-1">
+
+        </div>
+        <!-- two different columns that have buttons. -->
+        <div id="player1ButtonBar" class="col-md-6">
+          <a id="p1Hit" class="btn btn-secondary btn-lg active betButtons" role="button" aria-pressed="true">Hit</a>
+          <a id="p1Pass" class="btn btn-secondary btn-lg active betButtons" role="button" aria-pressed="true">Hold</a>
+          <a id="p1Reset" class="btn btn-secondary btn-lg active betButtons" role="button" aria-pressed="true">Next round</a>
+          <div class="form-group">
+
+            <div class="row">
+              <br>
+              <div class="col-md-2">
+                <input id="p1BetAmount" type="number" class="form-control" id="formGroupExampleInput" placeholder="Bet">
+
+              </div>
+              <div class="col-md-2">
+                <a id="p1Bet" class="btn btn-secondary btn-lg active betButtons" role="button" aria-pressed="true">Bet</a>
+              </div>
+              <div class="col-md-4">
+                <h4 id="player1RemainingMoney" ></h4>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div> <!-- buttons end -->
   </div>
-
-
+    <!-- Third row to have buttons -->
+    <div>
+    </div> <!-- Third row ends-->
   </div> <!-- Div Game container end -->
-
   </body>
 </html>
