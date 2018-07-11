@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function(event) {
 
     //setting up the deck. Create it, shuffle, hit and pass functionalities
@@ -78,7 +77,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
               case 4:
                   $('#dealCard4').prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+dealerCard.Name+dealerCard.Suit+'.png />');
                 break;
-                $('#dealCard5').prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+dealerCard.Name+dealerCard.Suit+'.png />');
+              case 5:
+                  $('#dealCard5').prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+dealerCard.Name+dealerCard.Suit+'.png />');
+                break;
               default:
             }
               $('#dealerScoreLabel').html('<h4>Dealer score: '+deScore+'</h4>');
@@ -134,6 +135,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 for (var de = 3 ; de <= 5; de++) {
                   if (deScore < p1score && p1score<=21) {
                   var dealerCard = deck.shift();
+                  descore = descore + dealerCard.Value;
                   switch (de) {
                     case 3:
                       $('#dealCard3').prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+dealerCard.Name+dealerCard.Suit+'.png />');
@@ -141,10 +143,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
                     case 4:
                       $('#dealCard4').prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+dealerCard.Name+dealerCard.Suit+'.png />');
                       break;
+                    case 5:
                       $('#dealCard5').prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+dealerCard.Name+dealerCard.Suit+'.png />');
+                      break;
                     default:
                   }
-                  $('#dealCard'+de).prepend('<img class=card src= C:/Users/TECH-W74/Desktop/BJproject/images/'+dealerCard.Name+dealerCard.Suit+'.png />');
                   $('#dealerScoreLabel').html('<h4>Dealer score: '+deScore+'</h4>');
                 }
               }
@@ -176,7 +179,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         };
       });
     };
-    
+
     //function that checks for the winner comparing the 2 values
     //gets 1 random integer from a pool of numbers
     function getRandomInteger(min,max) {
@@ -196,9 +199,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
           }else if (name[n] == "A") {
             value = 11;
           }
-
           var card = {Name: name[n], Suit: suit[s], Value: value};
-
           deck.push(card);
         };
       };
