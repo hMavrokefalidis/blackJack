@@ -101,7 +101,8 @@
         </div>
         <!-- splitting the columns in half -->
         <div class="col-md-7">
-          <h4 id="p1HandCounter">Place your bets</h4>
+          <div class="col-md-3"><h4 id="player1RemainingMoney" ></h4></div>
+          <div class="col-md-3"> <h4 id="p1HandCounter"></h4> </div>
           <div class="row"></div>
           <!-- Each column is a card -->
 
@@ -122,38 +123,26 @@
           <div id="p1card4" class="col-md-3 cardContainer">
 
           </div> <!-- Cards end -->
-        </div> <!-- half ends -->
-      </div><!-- big row to have both hands ends -->
-
-    </div> <!-- Second row ends -->
-<br>
-      <div class="row">
-        <div class="col-md-1">
-
         </div>
+        <h4>Place your bets</h4> <!-- half ends -->
+        <br>
+          <input id="p1BetAmount" type="number" align ="right">
+          <button id="p1Bet" class="btn btn-secondary btn-lg active betButtons">Bet</button>       
+        </div>        
+      </div><!-- big row to have both hands ends -->
+      <div class="row">
         <!-- two different columns that have buttons. -->
+        <br>
+        <div class="col-md-1"></div>
         <div id="player1ButtonBar" class="col-md-6">
           <a id="p1Hit" class="btn btn-secondary btn-lg active betButtons" role="button" aria-pressed="true">Hit</a>
           <a id="p1Pass" class="btn btn-secondary btn-lg active betButtons" role="button" aria-pressed="true">Hold</a>
           <a id="p1Reset" class="btn btn-secondary btn-lg active betButtons" role="button" aria-pressed="true">Next round</a>
-          <div class="form-group">
-
-            <div class="row">
-              <br>
-              <div class="col-md-2">
-                <input id="p1BetAmount" type="number" class="form-control" id="formGroupExampleInput" placeholder="Bet">
-
-              </div>
-              <div class="col-md-2">
-                <a id="p1Bet" class="btn btn-secondary btn-lg active betButtons" role="button" aria-pressed="true">Bet</a>
-              </div>
-              <div class="col-md-4">
-                <h4 id="player1RemainingMoney" ></h4>
-              </div>
-            </div>
-          </div>
+          
         </div>
-    </div> <!-- buttons end -->
+    </div>
+    </div> <!-- Second row ends -->
+       <!-- buttons end -->
   </div>
     <!-- Third row to have buttons -->
     <div>
