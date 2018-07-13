@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     $( "#p1Pass" ).hide( "slow", function(){});
     $("#remainingCardsf").html("<h4>Remaining cards: "+deck.length+"</h4>");
     $("#player1RemainingMoney").html("You have: £"+money);
-    
+
      $("#p1BetAmount").click(function() {
       var betAmountInString = prompt("Enter the amount you want to bet");
       player1Bet = (parseInt(betAmountInString));
@@ -94,13 +94,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
             if((deHand[0].Name == "A" || deHand[1].Name == "A" || dealerCard.Name == "A")&& deScore>21){
               deScore = deScore -10;
             }
-            
+
             };
           };
           $('#dealerScoreLabel').html('<h4>Dealer score: '+deScore+'</h4>');
           $("#remainingCards").html("<h4>Remaining cards: "+deck.length+"</h4>");
-            
-           
+
+
            if (deScore > 21 || p1score > deScore && p1score < 21) {
             money = money + player1Bet;
                $("#player1RemainingMoney").html("You have: £"+money);//AI LOSES
@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
              $("#player1RemainingMoney").html("You have: £"+money);//draw
            }
           }, 1500);
-       
+
         $( "#p1Reset" ).show( "slow", function(){});
 
       });
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             $("#p1HandCounter").html("Your score is: "+p1score);
           }else{
             $("#p1HandCounter").html("Bust! Your score is: "+p1score);
-          }         
+          }
           $("#player1RemainingMoney").html("You have: £"+(money-player1Bet));
           $( "#p1Hit" ).hide( "slow", function(){});
           $( "#p1Double" ).hide( "slow", function(){});
@@ -216,9 +216,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
         window.location.href = "pages/YouWon.html"
       }else if (money <= 0) {
         window.location.href = "pages/YouLost.html"
-      } 
+      }
       },1000)
-      
+
       $('#dealerScoreLabel').html('<h4>Dealer hand</h4>');
       $("#player1RemainingMoney").html("You have: £"+money);
       $("#remainingCardsf").html("<h4>Remaining cards: "+deck.length+"</h4>");
