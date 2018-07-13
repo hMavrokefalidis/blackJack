@@ -9,9 +9,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var count = 1;
 
     setUpDeck();
+    $( "#p1Hit" ).hide( "slow", function(){});
+    $( "#p1Reset" ).hide( "slow", function(){});
+    $( "#p1Double" ).hide( "slow", function(){});
+    $( "#p1Pass" ).hide( "slow", function(){});
     $("#remainingCardsf").html("<h4>Remaining cards: "+deck.length+"</h4>");
     $("#player1RemainingMoney").html("You have: £"+money);
-    $("#p1BetAmount").click(function() {
+
+     $("#p1BetAmount").click(function() {
       var betAmountInString = prompt("Enter the amount you want to bet");
       player1Bet = (parseInt(betAmountInString));
 
@@ -22,10 +27,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     });
 
 
+
     //After a bet has been placed, 2 cards are dealt to the player and their value should be calculated.
     //Options for hit and pass should be open
     function firstBets() {
-      $( "#p1Reset" ).hide( "slow", function(){});
+      $( "#p1Hit" ).show( "slow", function(){});
+      $( "#p1Pass" ).show( "slow", function(){});
+      $( "#p1Double" ).show( "slow", function(){});
       $("#player1RemainingMoney").html("You have: £"+(money-player1Bet));
       var p1Hand = [];
       var deHand = [];
@@ -57,11 +65,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
       //Pass anonymous function is created. 1st SPRINT: here the dealers turn should be coded.
       $( "#p1Pass" ).one( "click", function(){
+        $( "#p1Double" ).hide( "slow", function(){});
         $( "#p1Hit" ).hide( "slow", function(){});
         $( "#p1Pass" ).hide( "slow", function(){});
         //replacing the face down card with the face up card. Because replaceWith() is used, we must re-add the col-md-2 class
         //which was removed by the function
-        $('#dealCard1').replaceWith('<div id="dealCard1" class="col-md-2 cardContainer card"><img src= C:/Users/TECH-W74/Desktop/BJproject/images/'+deHand[0].Name+deHand[0].Suit+'.png /></div>');
+        $('#dealCard1').replaceWith('<div id="dealCard1" class="col-md-2 cardContainer card"><img src= images/'+deHand[0].Name+deHand[0].Suit+'.png /></div>');
         $('#dealerScoreLabel').html('<h4>Dealer score: '+deScore+'</h4>');
 
 
@@ -82,32 +91,59 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 break;
               default:
             }
-              $('#dealerScoreLabel').html('<h4>Dealer score: '+deScore+'</h4>');
+            if((deHand[0].Name == "A" || deHand[1].Name == "A" || dealerCard.Name == "A")&& deScore>21){
+              deScore = deScore -10;
+            }
+
             };
           };
+          $('#dealerScoreLabel').html('<h4>Dealer score: '+deScore+'</h4>');
           $("#remainingCards").html("<h4>Remaining cards: "+deck.length+"</h4>");
-          if (deScore > 21) {
-           money = money + player1Bet;
-           $("#player1RemainingMoney").html("You have: £"+money);//AI LOSES
-          }
-          else if (deScore >= p1score && deScore <= 21 || p1score>21) {
-           money = money - player1Bet;
-           $("#player1RemainingMoney").html("You have: £"+money);//AI wins
-          }
-          else if (deScore == p1Score) {
-            $("#player1RemainingMoney").html("You have: £"+money);//draw
-          }
-       }, 1500);
+
+
+           if (deScore > 21 || p1score > deScore && p1score < 21) {
+            money = money + player1Bet;
+               $("#player1RemainingMoney").html("You have: £"+money);//AI LOSES
+           }
+           else if (deScore >= p1score && deScore <= 21 || p1score>21) {
+             money = money - player1Bet;
+            $("#player1RemainingMoney").html("You have: £"+money);//AI wins
+            }
+            else if (deScore == p1Score) {
+             $("#player1RemainingMoney").html("You have: £"+money);//draw
+           }
+          }, 1500);
+
         $( "#p1Reset" ).show( "slow", function(){});
 
       });
 
-        //after 3 seconds, the the AI logic will be coded
+      //after 3 seconds, the the AI logic will be coded
+      $("#p1Double").unbind().click(function(){
+        if (p1score<21) {
+          var nextCard = deck.shift();
+          p1score = p1score + nextCard.Value;
+          player1Bet = player1Bet *2;
+          if((p1Hand[0].Name == "A" || p1Hand[1].Name == "A" || nextCard.Name == "A")&& p1score>21){
+              deScore = deScore -10;
+            }
+          $("#p1card2").prepend('<img class=card src= images/'+nextCard.Name+nextCard.Suit+'.png />');
+          if (p1score<=21) {
+            $("#p1HandCounter").html("Your score is: "+p1score);
+          }else{
+            $("#p1HandCounter").html("Bust! Your score is: "+p1score);
+          }
+          $("#player1RemainingMoney").html("You have: £"+(money-player1Bet));
+          $( "#p1Hit" ).hide( "slow", function(){});
+          $( "#p1Double" ).hide( "slow", function(){});
+          }
+        })
 
       //Once a player placed a bet, and seen their hand, they should be able to Hit on top of their combo
       //Here, an event is set that takes the top Card of the deck, matches it with the respective picture
       //Finally setting it up on it's column on the board
       $("#p1Hit").unbind().click(function() {
+        $( "#p1Double" ).hide( "slow", function(){});
         $("#remainingCards").html("<h4>Remaining cards: "+deck.length+"</h4>");
         if (p1score < 21) {
           count++;
@@ -126,48 +162,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
               break;
             default:
           }
-
-
-          //if the player passes after a hit
-          $( "#p1Pass" ).click( function(){
-            $("dealCard1").replaceWith('<img class=card src= images/'+deHand[0].Name+ deHand[0].Suit +'.png />')
-            setTimeout(function(){
-                for (var de = 3 ; de <= 5; de++) {
-                  if (deScore < p1score && p1score<=21) {
-                  var dealerCard = deck.shift();
-                  descore = descore + dealerCard.Value;
-                  switch (de) {
-                    case 3:
-                      $('#dealCard3').prepend('<img class=card src= images/'+dealerCard.Name+dealerCard.Suit+'.png />');
-                      break;
-                    case 4:
-                      $('#dealCard4').prepend('<img class=card src= images/'+dealerCard.Name+dealerCard.Suit+'.png />');
-                      break;
-                    case 5:
-                      $('#dealCard5').prepend('<img class=card src= images/'+dealerCard.Name+dealerCard.Suit+'.png />');
-                      break;
-                    default:
-                  }
-                  $('#dealerScoreLabel').html('<h4>Dealer score: '+deScore+'</h4>');
-                }
-              }
-            }, 2000);
-            $("#remainingCards").html("<h4>Remaining cards: "+deck.length+"</h4>");
-            if (deScore > 21) {
-              money = money + player1Bet;
-              $("#player1RemainingMoney").html("You have: £"+money);//AI LOSES
+          if((p1Hand[0].Name == "A" || p1Hand[1].Name == "A" || nextCard.Name == "A")&& p1score>21){
+              deScore = deScore -10;
             }
-            else if (deScore >= p1score && deScore <= 21 || p1score>21) {
-              money = money - player1Bet;
-              $("#player1RemainingMoney").html("You have: £"+money);//AI wins
-            }
-            else if (deScore == p1Score) {
-              $("#player1RemainingMoney").html("You have: £"+money);//draw
-            }
-
-            //reset everything
-            $( "#p1Reset" ).show( "slow", function(){});
-          });
         }
         else if (p1score > 21 ){
           $("#p1HandCounter").html("Bust! Your score is: "+p1score);
@@ -214,12 +211,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
       p1Hand = [];
       deHand = [];
       count = 1;
-      p1score = 0;
-      deScore = 0;
+      window.setTimeout(function(){
+        if (money == 500) {
+        window.location.href = "pages/YouWon.html"
+      }else if (money <= 0) {
+        window.location.href = "pages/YouLost.html"
+      }
+      },1000)
+
       $('#dealerScoreLabel').html('<h4>Dealer hand</h4>');
+      $("#player1RemainingMoney").html("You have: £"+money);
+      $("#remainingCardsf").html("<h4>Remaining cards: "+deck.length+"</h4>");
       $('#p1HandCounter').html('<h4>Player hand</h4>');
-      $( "#p1Hit" ).show( "slow", function(){});
-      $( "#p1Pass" ).show( "slow", function(){});
+      $( "#p1Hit" ).hide( "slow", function(){});
+      $( "#p1Pass" ).hide( "slow", function(){});
+      $( "#p1Double" ).hide( "slow", function(){});
+      $( "#p1Reset" ).hide( "slow", function(){});
       $( "#p1BetAmount" ).show( "slow", function(){});
       $( "#p1Bet" ).show( "slow", function(){});
     });
