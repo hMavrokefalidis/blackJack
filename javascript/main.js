@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         $( "#p1Pass" ).hide( "slow", function(){});
         //replacing the face down card with the face up card. Because replaceWith() is used, we must re-add the col-md-2 class
         //which was removed by the function
-        $('#dealCard1').replaceWith('<div id="dealCard1" class="col-md-2 cardContainer card"><img src= C:/Users/TECH-W74/Desktop/BJproject/images/'+deHand[0].Name+deHand[0].Suit+'.png /></div>');
+        $('#dealCard1').replaceWith('<div id="dealCard1" class="col-md-2 cardContainer card"><img src= images/'+deHand[0].Name+deHand[0].Suit+'.png /></div>');
         $('#dealerScoreLabel').html('<h4>Dealer score: '+deScore+'</h4>');
 
 
